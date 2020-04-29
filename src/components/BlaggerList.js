@@ -15,8 +15,10 @@ class BlaggerList extends React.Component {
     this.state.logs.forEach((item, i) => {
       const formattedPost = (
         <div key={i}>
-          <div>{item.timeStamp}</div>
+          <div style={{ fontStyle: 'italic' }}>{item.timeStamp}</div>
+          <br />
           <p>{item.content}</p>
+          <br />
         </div>
       )
       renderedPosts.push(formattedPost)
@@ -43,11 +45,18 @@ class BlaggerList extends React.Component {
   render() {
     return (
       <div>
-        <img src={BlaggerLogo} alt="logo" />
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <img src={BlaggerLogo} alt="logo" />
+        </div>
         <br />
-        <div>
+        <div className="ui inverted segment">
           {this.state.titleEdit ? (
-            <div className="ui action input">
+            <div className="ui action inverted  input">
               <input
                 type="text"
                 value={this.state.title}
@@ -55,9 +64,8 @@ class BlaggerList extends React.Component {
                 onChange={(e) => this.setState({ title: e.target.value })}
               />
               <div
-                className="ui button"
+                className="ui icon inverted button input"
                 onClick={() => {
-                  console.log(this.state)
                   this.setState({ titleEdit: false })
                 }}
               >
@@ -70,22 +78,29 @@ class BlaggerList extends React.Component {
             </div>
           )}
         </div>
-        <div>
-          <span>Started {this.state.logDate}</span>
+        <div className="ui inverted segment">
+          <span style={{ fontStyle: 'italic' }}>
+            Started {this.state.logDate}
+          </span>
         </div>
         <br />
-        <div>{this.renderedPosts()}</div>
-        <div className="ui action input">
-          <input
-            type="text"
-            value={this.state.field}
-            onKeyPress={(e) => this.onEnter(e.key)}
-            onChange={(e) => {
-              this.setState({ field: e.target.value })
-            }}
-          />
-          <div className="ui button" onClick={() => this.onButtonClick()}>
-            post
+        <div className="ui inverted segment">
+          {this.renderedPosts()}
+          <div className="ui fluid action input">
+            <input
+              type="text"
+              value={this.state.field}
+              onKeyPress={(e) => this.onEnter(e.key)}
+              onChange={(e) => {
+                this.setState({ field: e.target.value })
+              }}
+            />
+            <div
+              className="ui inverted button"
+              onClick={() => this.onButtonClick()}
+            >
+              post
+            </div>
           </div>
         </div>
       </div>
