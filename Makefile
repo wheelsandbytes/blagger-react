@@ -6,3 +6,5 @@ build:
 	yarn build
 deploy:
 	yarn build && cp -R build/ /usr/local/var/www/html/
+inas:
+	yarn build && cp -R build/ /Volumes/Web/blagger/
